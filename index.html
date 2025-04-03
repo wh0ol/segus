@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tareas PWA</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#4CAF50">
+</head>
+<body>
+  <div class="container">
+    <h1>Mis Tareas</h1>
+    
+    <form id="task-form">
+      <input type="text" id="task-input" placeholder="Nueva tarea..." required>
+      <button type="submit">Agregar</button>
+    </form>
+    
+    <div id="task-list"></div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Registrar Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(registration => {
+            console.log('ServiceWorker registrado con éxito:', registration.scope);
+          })
+          .catch(error => {
+            console.log('Error al registrar ServiceWorker:', error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
